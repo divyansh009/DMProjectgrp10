@@ -470,12 +470,12 @@ elif add_type=='Host vs Non host analysis':
 		st.image('Homepage.jpg')
 	elif add_sidebar=='Asian Games':
 		with header:
-			st.title('Welcome to our host vs non-host performance analysis page:')
+			st.title('Welcome to our Asian games analysis page:')
 			st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 		
 		
 		with medals_tally:
-			st.header('Medals Tally(1951 onwards):')
+
 			host,non_host=helper.Host_analysis(add_sidebar)
 			st.subheader('Performance as host')
 			st.write(host)
@@ -534,7 +534,7 @@ elif add_type=='Host vs Non host analysis':
 			st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 		
 		with medals_tally:
-			st.header('Medals Tally(1951 onwards):')
+
 			host,non_host=helper.Host_analysis(add_sidebar)
 			st.subheader('Performance as host')
 			st.write(host)
@@ -594,7 +594,6 @@ elif add_type=='Host vs Non host analysis':
 		
 		
 		with medals_tally:
-			st.header('Medals Tally(1951 onwards):')
 			host_a,non_host_a=helper.Host_analysis('Asian Games')
 			st.subheader('Performance as host in Asian Games')
 			st.write(host_a)
@@ -872,7 +871,7 @@ elif add_type=='Male v/s Female Country-wise Medal Winning Comparision':
 		
 		
 		with header:
-			st.title('Welcome to our Olympic games analysis page:')
+			st.title('Welcome to our comparative analysis page:')
 			st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 		
 		
@@ -972,7 +971,7 @@ elif add_type=='Male v/s Female Year-wise Medal Winning Comparision':
 		
 		
 		with header:
-			st.title('Welcome to our Olympic games analysis page:')
+			st.title('Welcome to comparative analysis page:')
 			st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 		
 		
@@ -1055,7 +1054,7 @@ elif add_type=='Individual v/s Team Country-wise Medal Winning Comparision':
 		
 		
 		with header:
-			st.title('Welcome to our Olympic games analysis page:')
+			st.title('Welcome to our comparative analysis page:')
 			st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 		
 		
@@ -1789,6 +1788,7 @@ elif add_type=='Countries winning atleast 1 medal in every sport in a year':
 				out=helper.Atleast_one(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
+				st.subheader('This table contains information about number of sports organized in any particular year. Also, it contains percentage of medal won sportswise. It is calculated by dividing total sports events in which a particular country won atleast 1 medal  by total sports events held in that particular year.')
 
 		elif add_sidebar=='Olympic Games':
 			with header:
@@ -1800,7 +1800,7 @@ elif add_type=='Countries winning atleast 1 medal in every sport in a year':
 				out=helper.Atleast_one(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
-				
+				st.subheader('This table contains information about number of sports organized in any particular year. Also, it contains percentage of medal won sportswise. It is calculated by dividing total sports events in which a particular country won atleast 1 medal  by total sports events held in that particular year.')
 		elif add_sidebar=='Both':
 			with header:
 				st.title('Welcome to our comparative analysis page:')
@@ -1812,7 +1812,7 @@ elif add_type=='Countries winning atleast 1 medal in every sport in a year':
 				out1,out2=helper.Atleast_one(add_sidebar)
 				st.write(out1)
 				st.write(out2)
-
+				st.subheader('This table contains information about number of sports organized in any particular year. Also, it contains percentage of medal won sportswise. It is calculated by dividing total sports events in which a particular country won atleast 1 medal  by total sports events held in that particular year.')
 	elif select_criteria=="Year-wise":
 		if add_sidebar=='Home Page':
 			with header:
@@ -1830,7 +1830,7 @@ elif add_type=='Countries winning atleast 1 medal in every sport in a year':
 				out=helper.Atleast_one_country(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
-
+				st.subheader('This table contains information about number of sports organized in any particular year. Also, it contains percentage of medal won sportswise. It is calculated by dividing total sports events in which a particular country won atleast 1 medal  by total sports events held in that particular year.')
 		elif add_sidebar=='Olympic Games':
 			with header:
 				st.title('Welcome to our Olympics games analysis page:')
@@ -1841,7 +1841,7 @@ elif add_type=='Countries winning atleast 1 medal in every sport in a year':
 				out=helper.Atleast_one_country(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
-				
+				st.subheader('This table contains information about number of sports organized in any particular year. Also, it contains percentage of medal won sportswise. It is calculated by dividing total sports events in which a particular country won atleast 1 medal  by total sports events held in that particular year.')
 		elif add_sidebar=='Both':
 			with header:
 				st.title('Welcome to our comparative analysis page:')
@@ -1853,7 +1853,7 @@ elif add_type=='Countries winning atleast 1 medal in every sport in a year':
 				out1,out2=helper.Atleast_one_country(add_sidebar)
 				st.write(out1)
 				st.write(out2)
-
+				st.subheader('This table contains information about number of sports organized in any particular year. Also, it contains percentage of medal won sportswise. It is calculated by dividing total sports events in which a particular country won atleast 1 medal  by total sports events held in that particular year.')
 elif add_type=='Recession year for a country':
 	select_criteria=st.sidebar.selectbox("Select the type of analysis:",
 									  ['Recession Years','Booming Years'])
@@ -1870,7 +1870,7 @@ elif add_type=='Recession year for a country':
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Countries Recession years in which its medal winning rate decreased over time:')
 				out=helper.find_recession_years(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
@@ -1881,7 +1881,7 @@ elif add_type=='Recession year for a country':
 				st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Countries Recession years in which its medal winning rate decreased over time:')
 				out=helper.find_recession_years(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
@@ -1893,9 +1893,11 @@ elif add_type=='Recession year for a country':
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year:')
+				st.header('Countries Recession years in which its medal winning rate decreased over time:')
 				out1,out2=helper.find_recession_years(add_sidebar)
+				st.subheader('Asian Games')
 				st.write(out1)
+				st.subheader('Olympic Games')
 				st.write(out2)
 
 	elif select_criteria=="Booming Years":
@@ -1906,12 +1908,12 @@ elif add_type=='Recession year for a country':
 			st.image('Homepage.jpg')
 		elif add_sidebar=='Asian Games':
 			with header:
-				st.title('Welcome to our Countries winning atleast 1 medal in every sport in a year analysis page:')
+				st.title('Welcome to our Asian Games analysis page:')
 				st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Countries Booming years in which its medal winning rate increased over time:')
 				out=helper.find_boom_years(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
@@ -1922,7 +1924,7 @@ elif add_type=='Recession year for a country':
 				st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Countries Booming years in which its medal winning rate increased over time:')
 				out=helper.find_boom_years(add_sidebar)
 				st.subheader('Table:')
 				st.write(out)
@@ -1934,9 +1936,11 @@ elif add_type=='Recession year for a country':
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year:')
+				st.header('Countries Booming years in which its medal winning rate increased over time:')
 				out1,out2=helper.find_boom_years(add_sidebar)
+				st.subheader('Asian Games')
 				st.write(out1)
+				st.subheader('Olympic Games')
 				st.write(out2)
 
 elif add_type=='Year(sport) in which country won minimum(maximum) medals':
@@ -1952,12 +1956,12 @@ elif add_type=='Year(sport) in which country won minimum(maximum) medals':
 			st.image('Homepage.jpg')
 		elif add_sidebar=='Asian Games':
 			with header:
-				st.title('Welcome to our Countries winning atleast 1 medal in every sport in a year analysis page:')
+				st.title('Welcome to our Asian Games analysis page:')
 				st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Best performing year for any country on the basis of medal type selected:')
 				out=helper.find_best_year(add_sidebar,medal_type)
 				st.subheader('Table:')
 				st.write(out)
@@ -1968,7 +1972,7 @@ elif add_type=='Year(sport) in which country won minimum(maximum) medals':
 				st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Best performing year for any country on the basis of medal type selected:')
 				out=helper.find_best_year(add_sidebar,medal_type)
 				st.subheader('Table:')
 				st.write(out)
@@ -1980,9 +1984,11 @@ elif add_type=='Year(sport) in which country won minimum(maximum) medals':
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year:')
+				st.header('Best performing year for any country on the basis of medal type selected:')
 				out1,out2=helper.find_best_year(add_sidebar,medal_type)
+				st.subheader('Asian Games')
 				st.write(out1)
+				st.subheader('Olympic Games')
 				st.write(out2)
 
 	elif type=='Best Sport':
@@ -1993,12 +1999,12 @@ elif add_type=='Year(sport) in which country won minimum(maximum) medals':
 			st.image('Homepage.jpg')
 		elif add_sidebar=='Asian Games':
 			with header:
-				st.title('Welcome to our Countries winning atleast 1 medal in every sport in a year analysis page:')
+				st.title('Welcome to our Asian Games analysis page:')
 				st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Best performing sport for any country on the basis of medal type selected:')
 				out=helper.find_best_sport(add_sidebar,medal_type)
 				st.subheader('Table:')
 				st.write(out)
@@ -2009,7 +2015,7 @@ elif add_type=='Year(sport) in which country won minimum(maximum) medals':
 				st.text('In this project, we analysed performance of \nasian countries in Olympic games and Asian games.')
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year')
+				st.header('Best performing sport for any country on the basis of medal type selected:')
 				out=helper.find_best_sport(add_sidebar,medal_type)
 				st.subheader('Table:')
 				st.write(out)
@@ -2021,9 +2027,11 @@ elif add_type=='Year(sport) in which country won minimum(maximum) medals':
 			
 			
 			with medals_tally:
-				st.header('Countries winning atleast 1 medal in every sport in a year:')
+				st.header('Best performing sport for any country on the basis of medal type selected:')
 				out1,out2=helper.find_best_sport(add_sidebar,medal_type)
+				st.subheader('Asian Games')
 				st.write(out1)
+				st.subheader('Olympic Games')
 				st.write(out2)
 
 
