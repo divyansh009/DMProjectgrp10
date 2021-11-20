@@ -70,7 +70,7 @@ def Helper1(game,game_df,country,year):
         fig = plt.figure(figsize = (15, 5))
         sns.barplot(ans5_df["Year"],ans5_df["Total"])
         plt.xticks(rotation = 45)
-        plt.title("No Of Medals Won By "+country+" Year Wise in "+game+" Games",fontsize = 20)
+        plt.title("No Of Medals Won By "+country+" Year Wise in "+game,fontsize = 20)
         plt.xlabel("Year",fontsize=15)
         plt.ylabel("Total Medals",fontsize=15)
         for i in range(len(ans5_df["Year"].values)):  ##Adding labels to bars in bar graph.
@@ -94,7 +94,7 @@ def Helper1(game,game_df,country,year):
         fig = plt.figure(figsize = (15, 5))
         sns.barplot(ans4_df["Country"],ans4_df["Total"])
         plt.xticks(rotation = 90)
-        plt.title("No Of Medals Won By Each Country in "+game+" Games",fontsize = 20)
+        plt.title("No Of Medals Won By Each Country in "+game,fontsize = 20)
         plt.xlabel("Countries",fontsize=15)
         plt.ylabel("Total Medals",fontsize=15)
         for i in range(len(ans4_df["Country"].values)):  ##Adding labels to bars in bar graph.
@@ -265,8 +265,8 @@ def Helper3(game,game_df,country,year):
         df =  ans4_df[ans4_df["Country"] == country]
         fig = plt.figure(figsize = (15, 5))
         sns.barplot(df["Sport"],df["Total"],ci=None,dodge=False)
-        plt.xticks(rotation = 45)
-        plt.title("No Of Medals Won By "+country+" Sports Wise in "+game+" Games",fontsize = 20)
+        plt.xticks(rotation = 90)
+        plt.title("No Of Medals Won By "+country+" Sports Wise in "+game,fontsize = 20)
         plt.xlabel("Sports",fontsize=15)
         plt.ylabel("Total Medals",fontsize=15)
         for i in range(len(df["Sport"].values)):  ##Adding labels to bars in bar graph.
@@ -278,7 +278,7 @@ def Helper3(game,game_df,country,year):
         df =  ans3_df[ans3_df["Country"] == country]
         fig = plt.figure(figsize = (15, 5))
         sns.barplot(df["Sport"],df["Total"],ci=None,dodge=False)
-        plt.xticks(rotation = 45)
+        plt.xticks(rotation = 90)
         plt.title("No Of Medals Won By "+country+" in "+str(year)+" Sport Wise",fontsize = 20)
         plt.xlabel("Sports",fontsize=15)
         plt.ylabel("Total Medals",fontsize=15)
