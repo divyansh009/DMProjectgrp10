@@ -493,46 +493,46 @@ def Athlete_sportwise(game,sports,country,year):
     return df1
 #---------Q7---------
 def Q7a():
-	event_F = Q7.get_events(df_aa, "F")
-	event_M = Q7.get_events(df_aa, "M")
-	
-	x_axis_A = pd.unique(df_aa["Year"])
-	y_axis_f_A = [len(event_F[event_F["Year"] == y]) for y in x_axis_A]
-	y_axis_m_A = [len(event_M[event_M["Year"] == y]) for y in x_axis_A]
-	xlabel = "Years"
-	ylabel = "No of events"
-	title = "No of events of male and female over the years in Asian Games"
-	
-	fig1, ax1 = Q7.plotLine(x_axis_A, [y_axis_m_A, y_axis_f_A], ["Male", "Female"], xlabel, ylabel, title)
-	
-	events = df_oa.groupby(["Event", "Gender", "Country", "Year", "Sport", "Sport_Type", "Gold", "Silver", "Bronze"], as_index = False).agg("sum")
-	events_m = events[events["Gender"] == "M"]
-	events_f = events[events["Gender"] == "F"]
-	
-	x_axis_O = pd.unique(df_oa["Year"])
-	y_axis_f_O = [len(events_f[events_f["Year"] == y]) for y in x_axis_O]
-	y_axis_m_O = [len(events_m[events_m["Year"] == y]) for y in x_axis_O]
-	
-	xlabel = "Years"
-	ylabel = "No of events"
-	title = "No of Medals won by male and female over the years in Olympics"
-	fig2, ax2 = Q7.plotLine(x_axis_O, [y_axis_m_O, y_axis_f_O], ["Male", "Female"], xlabel, ylabel, title)
-	
-	return fig1, fig2
+    event_F = Q7.get_events(df_aa, "F")
+    event_M = Q7.get_events(df_aa, "M")
+    
+    x_axis_A = pd.unique(df_aa["Year"])
+    y_axis_f_A = [len(event_F[event_F["Year"] == y]) for y in x_axis_A]
+    y_axis_m_A = [len(event_M[event_M["Year"] == y]) for y in x_axis_A]
+    xlabel = "Years"
+    ylabel = "No of events"
+    title = "No of events of male and female over the years in Asian Games"
+    
+    fig1, ax1 = Q7.plotLine(x_axis_A, [y_axis_m_A, y_axis_f_A], ["Male", "Female"], xlabel, ylabel, title)
+    
+    events = df_oa.groupby(["Event", "Gender", "Country", "Year", "Sport", "Sport_Type", "Gold", "Silver", "Bronze"], as_index = False).agg("sum")
+    events_m = events[events["Gender"] == "M"]
+    events_f = events[events["Gender"] == "F"]
+    
+    x_axis_O = pd.unique(df_oa["Year"])
+    y_axis_f_O = [len(events_f[events_f["Year"] == y]) for y in x_axis_O]
+    y_axis_m_O = [len(events_m[events_m["Year"] == y]) for y in x_axis_O]
+    
+    xlabel = "Years"
+    ylabel = "No of events"
+    title = "No of Medals won by male and female over the years in Olympics"
+    fig2, ax2 = Q7.plotLine(x_axis_O, [y_axis_m_O, y_axis_f_O], ["Male", "Female"], xlabel, ylabel, title)
+    
+    return fig1, fig2
 
 def Q7b(df_p, game, year, sport, medal):
     events, fig = Q7.m_f_winning_ratio_countrywise(df_p, game, year, sport, medal)
     return events, fig
 
 def Q7c(df_p, game, nation, sport, medal):
-	events, fig = Q7.m_f_winning_ratio_yearwise(df_p, game, nation, sport, medal)
-	return events, fig
+    events, fig = Q7.m_f_winning_ratio_yearwise(df_p, game, nation, sport, medal)
+    return events, fig
 
 #---------Q8---------
 
 def Q8a(df_p, game, year, medal):
-	events, fig = Q8.indi_team_table(df_p, game, year, medal)
-	return events, fig
+    events, fig = Q8.indi_team_table(df_p, game, year, medal)
+    return events, fig
 #---------Q9---------
 #---------Q10---------
 #---------Q11---------
@@ -851,7 +851,7 @@ def recession(x):
     if len(rec_years)>1:
         x['Year'] = str(rec_years[0])+" - "+str(rec_years[len(rec_years)-1])
     else:
-        x['Year'] = int(x.loc[x[['Total']].idxmin(), 'Year'])
+        x['Year'] = str(x.loc[x[['Total']].idxmin(), 'Year'])
     x.drop(['Country','Total'],axis = 1, inplace =True)
     return x.iloc[0]
 
@@ -863,12 +863,19 @@ def find_recession_years(game):
         df = df[['Year','Country','Total']]
         df = df.groupby(['Year','Country']).sum().reset_index()
         df_recession = df.groupby('Country').apply(recession).reset_index()
+        for i in range(len(df_recession)):
+            if 'Name' in df_recession['Year'].iloc[i]:
+                df_recession['Year'].iloc[i]=df_recession['Year'].iloc[i].split()[1]
+
         return df_recession
     elif game=="Olympic Games":
         df=df_Olympics.copy()
         df = df[['Year','Country','Total']]
         df = df.groupby(['Year','Country']).sum().reset_index()
         df_recession = df.groupby('Country').apply(recession).reset_index()
+        for i in range(len(df_recession)):
+            if 'Name' in df_recession['Year'].iloc[i]:
+                df_recession['Year'].iloc[i]=df_recession['Year'].iloc[i].split()[1]
         return df_recession
     elif game=="Both":
         df=df_Asian.copy()
@@ -876,11 +883,18 @@ def find_recession_years(game):
         df = df[['Year','Country','Total']]
         df = df.groupby(['Year','Country']).sum().reset_index()
         df_recession = df.groupby('Country').apply(recession).reset_index()
-        
+        for i in range(len(df_recession)):
+            if 'Name' in df_recession['Year'].iloc[i]:
+                df_recession['Year'].iloc[i]=df_recession['Year'].iloc[i].split()[1]
+
         df1 = df1[['Year','Country','Total']]
         df1 = df1.groupby(['Year','Country']).sum().reset_index()
         df_recession1 = df1.groupby('Country').apply(recession).reset_index()
+        for i in range(len(df_recession1)):
+            if 'Name' in df_recession1['Year'].iloc[i]:
+                df_recession1['Year'].iloc[i]=df_recession1['Year'].iloc[i].split()[1]
         return df_recession,df_recession1
+        
 def boom(x):
     rec_years= []
     temp = []
@@ -900,7 +914,7 @@ def boom(x):
     if len(rec_years)>1:
         x['Year'] = str(rec_years[0])+" - "+str(rec_years[len(rec_years)-1])
     else:
-        x['Year'] = int(x.loc[x[['Total']].idxmax(), 'Year'])
+        x['Year'] = str(x.loc[x[['Total']].idxmax(), 'Year'])
     x.drop(['Country','Total'],axis = 1, inplace =True)
     return x.iloc[0]
 
@@ -912,12 +926,18 @@ def find_boom_years(game):
         df = df[['Year','Country','Total']]
         df = df.groupby(['Year','Country']).sum().reset_index()
         df_boom = df.groupby('Country').apply(boom).reset_index()
+        for i in range(len(df_boom)):
+            if 'Name' in df_boom['Year'].iloc[i]:
+                df_boom['Year'].iloc[i]=df_boom['Year'].iloc[i].split()[1]
         return df_boom
     elif game=="Olympic Games":
         df=df_Olympics.copy()
         df = df[['Year','Country','Total']]
         df = df.groupby(['Year','Country']).sum().reset_index()
         df_boom = df.groupby('Country').apply(boom).reset_index()
+        for i in range(len(df_boom)):
+            if 'Name' in df_boom['Year'].iloc[i]:
+                df_boom['Year'].iloc[i]=df_boom['Year'].iloc[i].split()[1]
         return df_boom
     elif game=="Both":
         df=df_Asian.copy()
@@ -925,10 +945,16 @@ def find_boom_years(game):
         df = df[['Year','Country','Total']]
         df = df.groupby(['Year','Country']).sum().reset_index()
         df_boom = df.groupby('Country').apply(boom).reset_index()
-        
+        for i in range(len(df_boom)):
+            if 'Name' in df_boom['Year'].iloc[i]:
+                df_boom['Year'].iloc[i]=df_boom['Year'].iloc[i].split()[1]
+
         df1 = df1[['Year','Country','Total']]
         df1 = df1.groupby(['Year','Country']).sum().reset_index()
         df_boom1 = df1.groupby('Country').apply(boom).reset_index()
+        for i in range(len(df_boom1)):
+            if 'Name' in df_boom1['Year'].iloc[i]:
+                df_boom1['Year'].iloc[i]=df_boom1['Year'].iloc[i].split()[1]
         return df_boom,df_boom1
 #---------Q17---------
 def find_best_year(game,category):
